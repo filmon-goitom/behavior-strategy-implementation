@@ -25,6 +25,8 @@
 
 // =============== your solutions will go here ===============
 
+//----------------------------------
+
 // =============== a for-of loop to control which solution(s) are tested ===============
 
 for (const solution of [secretSolution]) {

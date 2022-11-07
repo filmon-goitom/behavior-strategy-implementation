@@ -10,7 +10,17 @@
 
 // -------- your solutions --------
 
-for (const solution of [secretSolution]) {
+const reverse = (toReverse = '') => {
+  let result = '';
+  for(let i = toReverse.length - 1; i >= 0; i--){
+    result += toReverse[i]
+  }
+  return result
+}
+
+//---------------------------------
+
+for (const solution of [secretSolution , reverse ]) {
   // the main test suite for the function
   describe(solution.name + ': reverses a string', () => {
     it('default parameter is an empty string -> ""', () => {
@@ -23,6 +33,11 @@ for (const solution of [secretSolution]) {
       expect(solution('ASDF')).toEqual('FDSA');
     });
     // write at least 5 more tests ...
+
+    it('should throw TypeError if it is not a string', () =>{
+      expect(()=>(solution(23)).toThrow(TypeError))
+    })
+
   });
 }
 

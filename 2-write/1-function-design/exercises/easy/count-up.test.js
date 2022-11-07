@@ -11,7 +11,22 @@
 
 // -------- your solutions --------
 
-for (const solution of [secretSolution]) {
+const number = (max = 0) => {
+  if(max<0){
+    throw new RangeError('should be positive number')
+  }
+  if(!Number.isInteger(max)){
+    throw new TypeError('should be a number')
+  }
+  const result = [];
+  for (let i = 0; i <= max; i++) {
+    result.push(i)
+  }
+  return result;
+}
+//---------------------------------
+
+for (const solution of [secretSolution, number]) {
   // the main test suite for the function
   describe(solution.name + ': counts up from 0', () => {
     it('default parameter is 0 -> [0]', () => {
@@ -25,6 +40,16 @@ for (const solution of [secretSolution]) {
       expect(solution(1)).toEqual([0, 1]);
     });
     // write at least 5 more tests ...
+    it('2 -> [0, 1, 2]', () =>{
+      expect(solution(2)).toEqual([0 ,1 ,2]);
+    })
+    it('should throw TypeError if it is not a number', () => {
+      expect(() => (solution('hello')).toThrow(TypeError))
+    })
+    it('should throw RangeError', () => {
+      expect(() =>(solution(-2)).toThrow(RangeError))
+    })
+
   });
 }
 

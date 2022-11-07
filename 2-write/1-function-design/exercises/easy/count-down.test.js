@@ -11,7 +11,24 @@
 
 // -------- your solutions --------
 
-for (const solution of [secretSolution]) {
+const number = (start = 0) => {
+  if (start < 0 ){
+    throw new RangeError('should not be less than 0')
+  }
+  if (!Number.isInteger(start)){
+    throw new TypeError('should be a number')
+  }
+  const result = [];
+  for (let i = start; i >= 0; i--){
+    result.push(i)
+  }
+  return result;
+}
+
+
+//--------------------------------
+
+for (const solution of [secretSolution, number]) {
   // the main test suite for the function
   describe(solution.name + ': counts down to 0', () => {
     it('default parameter is 0 -> [0]', () => {
@@ -24,6 +41,17 @@ for (const solution of [secretSolution]) {
       expect(solution(1)).toEqual([1, 0]);
     });
     // write at least 5 more tests ...
+    it('2 -> [2, 1, 0]', () =>{
+      expect(solution(2)).toEqual([2, 1, 0]);
+    });
+    it('should throw RangeError if it is negative number', () =>{
+      expect(()=> (solution(-2))).toThrow(RangeError);
+    });
+    it('should throw TypeError if it is not number', () =>{
+      expect(()=> (solution('hello'))).toThrow(TypeError);
+    });
+    
+
   });
 }
 

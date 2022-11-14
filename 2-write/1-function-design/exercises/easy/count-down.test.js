@@ -12,7 +12,7 @@
 // -------- your solutions --------
 
 const number = (start = 0) => {
-  if (start < 0 ){
+  if (start < 0 ){ 
     throw new RangeError('should not be less than 0')
   }
   if (!Number.isInteger(start)){

@@ -12,12 +12,17 @@
  */
 
 // -------- your solutions --------
+function changeWord(text = '', lowerCase = true) {
+  // const result = text.split('').reverse().join('');
+  return lowerCase ? text.toLowerCase() : text.toUpperCase();
+}
+//-------------------------------
 
-for (const solution of [secretSolution]) {
+for (const solution of [secretSolution, changeWord]) {
   describe(solution.name + ': sets a text to lower or upper case', () => {
     describe("the function's default parameters", () => {
       it('second parameter defaults to true', () => {
-        expect(solution('asdf')).toEqual('asdf');
+        expect(solution('asdf',)).toEqual('asdf');
       });
       it('first parameter defaults to an empty string', () => {
         expect(solution()).toEqual('');
@@ -26,22 +31,62 @@ for (const solution of [secretSolution]) {
     // write the tests indicated by the comments
     describe('when set to lower case', () => {
       // when the text is an empty string
-      it(_, () => {
-        expect(solution(_, _)).toEqual(_);
+      it("first parameter defaults to an empty string", () => {
+        expect(solution("", true)).toEqual("");
       });
       // when the text is all upper case
+      it("first parameter is reversed in lowercase", () => {
+        expect(solution("ASDF", true)).toEqual("asdf");
+      });
       // when the text is all lower case
+      it("first parameter is reversed in the default lowercase", () => {
+        expect(solution("asdf", true)).toEqual("asdf");
+      });
       // when the text is mixed upper and lower case
+      it("the first parameter is reversed in lowercase", () => {
+        expect(solution("ASdf", true)).toEqual("asdf");
+      });
       // when the text contains punctuation
+      it("punctuation marks within the text are treated like characters", () => {
+        expect(solution("asdf!", true)).toEqual("asdf!");
+      });
       // when the text contains numbers
+      it("Numbers within the text are treated as string characters", () => {
+        expect(solution("asdf4", true)).toEqual("asdf4");
+      });
+      // when only numbers are given as input
+      it("should throw an error since only strings are accepted", () => {
+        expect(() => solution(12345, true)).toThrow(TypeError);
+      });
     });
     describe('when set to upper case', () => {
-      // when the text is an empty string
+      it("first parameter defaults to an empty string", () => {
+        expect(solution("", false)).toEqual("");
+      });
       // when the text is all upper case
+      it("first parameter is reversed in uppercase", () => {
+        expect(solution("ASDF", false)).toEqual("ASDF");
+      });
       // when the text is all lower case
+      it("first parameter is reversed in the default uppercase", () => {
+        expect(solution("asdf", false)).toEqual("ASDF");
+      });
       // when the text is mixed upper and lower case
+      it("first parameter is reversed in the default uppercase", () => {
+        expect(solution("ASdf", false)).toEqual("ASDF");
+      });
       // when the text contains punctuation
+      it("first parameter is reversed including the punctuation", () => {
+        expect(solution("ASDF!", false)).toEqual("ASDF!");
+      });
       // when the text contains numbers
+      it("first parameter is reversed including the numbers", () => {
+        expect(solution("hIgH-5", false)).toEqual("HIGH-5");
+      });
+      // when only numbers are given
+      it("should throw an error when the input is not string", () => {
+        expect(() => solution(34, false)).toThrow(TypeError);
+      });
     });
   });
 }

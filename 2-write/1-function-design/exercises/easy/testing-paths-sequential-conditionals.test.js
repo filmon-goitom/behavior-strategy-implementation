@@ -16,23 +16,34 @@
 
 // -------- your solutions --------
 
-for (const solution of [secretSolution]) {
+function binaryString(val1 = false, val2 = false) {
+  if (typeof val1 !== 'boolean', typeof val2 !== 'boolean') {
+    throw new TypeError('this should be a boolean');
+  }
+  let val3 = ''
+  return val3+= val1 ? '1' : '0', val3+= val2 ? '1' : '0'
+}
+
+for (const solution of [secretSolution,binaryString]) {
   // this function only 4 possible combinations of arguments
   //  it's possible test them all and have 100% confidence in the function
   describe(solution.name + ': converts two booleans to binary', () => {
     it('true, true --> "11"', () => {
-      const actual = solution(_, _);
-      expect(actual).toEqual(_);
+      const actual = solution(true,true);
+      expect(actual).toEqual('11');
     });
     it('true, false --> "10"', () => {
-      const actual = _;
+      const actual = solution(true,false);
       expect(actual).toEqual('10');
     });
     it('false, true --> "01"', () => {
-      const actual = _;
-      _;
+      const actual = solution(false,true);
+      expect(actual).toEqual('01');
     });
-    it('_', () => {});
+    it('false, false --> "00"', () => {
+      const actual = solution(false,false);
+      expect(actual).toEqual('00');
+    });
   });
 }
 
